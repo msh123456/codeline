@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "488cb344-59f1-44b9-903c-dacc7b66bc8b",
+		"name": "CodeLine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "meysam",
+							"description": "required|min:3",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "meysam@gmail.com",
+							"description": "required|email|unique:users",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"description": "required|min:3",
+							"type": "text"
+						},
+						{
+							"key": "c_password",
+							"value": "1234",
+							"description": "required|min:3|same:password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/login?email=meysam@gmail.com&password=1234",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "meysam@gmail.com",
+							"description": "required|email"
+						},
+						{
+							"key": "password",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user edit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE1NjIxNTYzNzAsImV4cCI6MTU2NTc1NjM3MCwibmJmIjoxNTYyMTU2MzcwLCJqdGkiOiJYUTV4VUZkaXpUU25yeWVrIiwic3ViIjozLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.FV6ykL1f5Gwctj1syJtI10Q0baTQvgryWsHKdSilZOk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/info",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user refresh token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvcmVmcmVzaCIsImlhdCI6MTU2MjE1ODczNiwiZXhwIjoxNTY1NzU4NzUzLCJuYmYiOjE1NjIxNTg3NTMsImp0aSI6IktFSGFNdXVuYWVZbjJCM1ciLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.dH_k2xrA_1FyhqdPbtzB6XQ221YvlgzDwPPm47dykUA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/refresh",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvcmVmcmVzaCIsImlhdCI6MTU2MjE1ODczNiwiZXhwIjoxNTY1NzU4NzUzLCJuYmYiOjE1NjIxNTg3NTMsImp0aSI6IktFSGFNdXVuYWVZbjJCM1ciLCJzdWIiOjMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.dH_k2xrA_1FyhqdPbtzB6XQ221YvlgzDwPPm47dykUA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/user/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
