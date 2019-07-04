@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Helpers\Help;
 use App\RoomType;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +51,14 @@ class RoomTypeController extends Controller
     if ($roomType==null)
       return Help::error(["msg"=>"RoomType not found"],404);
 
-    $roomType->delete();
+    try {
+      $roomType->delete();
+    }catch (QueryException $exception){
+      if ($exception->getCode() == 23000)
+        return Help::error(["msg" =>"Can not delete because of usage in other tables."]);
+      else
+        return Help::error($exception->getMessage());
+    }
     return Help::success();
 
   }

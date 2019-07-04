@@ -32,24 +32,28 @@ class HotelController extends Controller
         ,"city"=>'required|max:127'
         ,"state"=>'required|max:127'
         ,"country"=>'required|max:127'
-        ,"zip_code"=>'required|numeric|min:3|max:31'
-        ,"phone_number"=>'required|numeric|max:20'
+        ,"zip_code"=>'required|numeric|regex:/^[0-9]{3,31}$/'
+        ,"phone_number"=>'required|numeric|regex:/^[0-9]{5,20}$/'
         ,"email"=>'required|email|max:127'
-        ,"image"=>'required|file|mimes:jpg,jpeg,bmp,png|min:128|max:1024'
+        ,"image"=>'file|mimes:jpg,jpeg,bmp,png|min:64|max:1024'
     ]);
     if ($validator->fails()){
       return Help::error($validator->errors());
     }
-
-    $file = $request->file('image');
-    $destinationPath = env("uploadImagePath","uploads");
-    $fileName = md5(time().rand(0,99999999).uniqid()).".".$file->clientExtension();
-    $imageUrl = asset($destinationPath."/".$fileName);
-    $file->move($destinationPath,$fileName);
-
     $hotel = Hotel::find($id);
     if ($hotel==null)
       return Help::error(["msg"=>"Hotel not found!"]);
+
+    $imageUrl = $hotel->image;
+    if (!empty($request->file('image'))){
+      $file = $request->file('image');
+      $destinationPath = env("uploadImagePath", "uploads");
+      $fileName = md5(time() . rand(0, 99999999) . uniqid()) . "." . $file->clientExtension();
+      $imageUrl = asset($destinationPath . "/" . $fileName);
+      $file->move($destinationPath, $fileName);
+    }
+
+
     $hotel->name = $request->get("name");
     $hotel->address = $request->get("address");
     $hotel->city = $request->get("city");

@@ -25,14 +25,14 @@ Route::prefix('v1')->group(function () {
     Route::post('room/add', 'v1\RoomController@add');
     Route::post('room/delete/{id}', 'v1\RoomController@delete');
     Route::get('room/get/{id}', 'v1\RoomController@get');
-    Route::post('room/getAll', 'v1\RoomController@getAll');
+    Route::get('room/getAll', 'v1\RoomController@getAll');
 
     //RoomTypes
     Route::post('roomtype/edit/{name}', 'v1\RoomTypeController@edit');
     Route::post('roomtype/add', 'v1\RoomTypeController@add');
     Route::post('roomtype/delete/{name}', 'v1\RoomTypeController@delete');
-    Route::post('roomtype/get/{name}', 'v1\RoomTypeController@get');
-    Route::post('roomtype/getAll', 'v1\RoomTypeController@getAll');
+    Route::get('roomtype/get/{name}', 'v1\RoomTypeController@get');
+    Route::get('roomtype/getAll', 'v1\RoomTypeController@getAll');
 
 
     //Prices
